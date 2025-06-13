@@ -1,0 +1,29 @@
+﻿@model List<Xz.Models.Book>
+
+<h1>Список книг</h1>
+
+<a href="/Book/Create">Додати нову книгу</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Назва</th>
+            <th>Автор</th>
+            <th>Жанр</th>
+            <th>Видавництво</th>
+            <th>Рік</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+                <td>@book.Genre</td>
+                <td>@book.Publisher</td>
+                <td>@book.Year</td>
+            </tr>
+        }
+    </tbody>
+</table>
