@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Xz.Models;
 using Xz.Services;
+using System.Threading.Tasks;
+using System.Collections.Generic; // Додайте цей using
 
 namespace Xz.Controllers
 {
@@ -13,23 +15,24 @@ namespace Xz.Controllers
             _bookService = bookService;
         }
 
+        // Змінено: повертаємо колекцію книг
         public IActionResult Index()
         {
             var books = _bookService.GetAllBooks();
-            return View(books);
+            return View(books); // Повертаємо список книг
         }
 
         public IActionResult Create()
         {
-            return View();
+            return View(new Book());
         }
 
         [HttpPost]
-        public IActionResult Create(Book book)
+        public async Task<IActionResult> Create(Book book)
         {
             if (ModelState.IsValid)
             {
-                _bookService.AddBook(book);
+                await _bookService.AddBook(book);
                 return RedirectToAction("Index");
             }
             return View(book);

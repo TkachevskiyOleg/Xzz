@@ -8,24 +8,33 @@
     </a>
 </div>
 
-<table class="table table-striped table-bordered">
-    <thead class="table-dark">
-        <tr>
-            <th>Назва</th>
-            <th>Автор</th>
-            <th>Рік</th>
-            <th>Жанр</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var book in Model)
-        {
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        Немає доступних книг. Будь ласка, додайте нову книгу.
+    </div>
+}
+else
+{
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
             <tr>
-                <td>@book.Title</td>
-                <td>@book.Author</td>
-                <td>@book.Year</td>
-                <td>@book.Genre</td>
+                <th>Назва</th>
+                <th>Автор</th>
+                <th>Рік</th>
+                <th>Жанр</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var book in Model)
+            {
+                <tr>
+                    <td>@book.Title</td>
+                    <td>@book.Author</td>
+                    <td>@book.Year</td>
+                    <td>@book.Genre</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

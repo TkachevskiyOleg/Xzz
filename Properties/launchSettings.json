@@ -8,14 +8,17 @@
       "sslPort": 0
     }
   },
-  "profiles": {
-    "http": {
-      "commandName": "Project",
-      "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "applicationUrl": "http://localhost:5015",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+    {
+    "profiles": {
+      "http": {
+        "commandName": "Project",
+        "dotnetRunMessages": true,
+        "launchBrowser": true,
+        "applicationUrl": "http://localhost:5015",
+        "environmentVariables": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
+          }
+        }
       }
     },
     "IIS Express": {

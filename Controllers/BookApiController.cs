@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Xz.Models;
+using Xz.Services;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Xz.Controllers
 {
@@ -7,18 +10,24 @@ namespace Xz.Controllers
     [Route("api/[controller]")]
     public class BookApiController : ControllerBase
     {
-        private static List<Book> _books = new List<Book>();
-        private static int _nextId = 1;
+        private readonly BookService _bookService;
+
+        public BookApiController(BookService bookService)
+        {
+            _bookService = bookService;
+        }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Book>> GetAll() => Ok(_books);
+        public ActionResult<IEnumerable<Book>> GetAll()
+        {
+            return Ok(_bookService.GetAllBooks());
+        }
 
         [HttpPost]
-        public IActionResult AddBook(Book book)
+        public async Task<IActionResult> AddBook(Book book)
         {
-            book.Id = _nextId++;
-            _books.Add(book);
-            return CreatedAtAction(nameof(GetAll), new { id = book.Id }, book);
+            await _bookService.AddBook(book);
+            return CreatedAtAction(nameof(GetAll), book);
         }
     }
 }
