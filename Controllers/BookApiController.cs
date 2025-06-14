@@ -18,16 +18,25 @@ namespace Xz.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Book>> GetAll()
+        public async Task<ActionResult<IEnumerable<Book>>> GetAll()
         {
-            return Ok(_bookService.GetAllBooks());
+            var books = await _bookService.GetAllBooks();
+            return Ok(books);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Book>> GetById(int id)
+        {
+            var book = await _bookService.GetBookById(id);
+            if (book == null) return NotFound();
+            return Ok(book);
         }
 
         [HttpPost]
         public async Task<IActionResult> AddBook(Book book)
         {
             await _bookService.AddBook(book);
-            return CreatedAtAction(nameof(GetAll), book);
+            return CreatedAtAction(nameof(GetById), new { id = book.Id }, book);
         }
     }
 }

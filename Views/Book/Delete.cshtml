@@ -1,0 +1,20 @@
+﻿@model Xz.Models.Book
+
+@{
+    ViewData["Title"] = "Видалити книгу";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4 text-danger">⚠️ Ви впевнені, що хочете видалити цю книгу?</h2>
+
+    <div class="mb-3"><strong>Назва:</strong> @Model.Title</div>
+    <div class="mb-3"><strong>Автор:</strong> @Model.Author</div>
+    <div class="mb-3"><strong>Жанр:</strong> @Model.Genre</div>
+    <div class="mb-3"><strong>Рік:</strong> @Model.Year</div>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">🗑️ Видалити</button>
+        <a asp-action="Index" class="btn btn-secondary">↩️ Назад</a>
+    </form>
+</div>

@@ -1,13 +1,15 @@
 ﻿@model Xz.Models.Book
 
 @{
-    ViewData["Title"] = "Додати книгу";
+    ViewData["Title"] = "Редагувати книгу";
 }
 
 <div class="container mt-4">
-    <h2 class="mb-4">➕ Додати нову книгу</h2>
+    <h2 class="mb-4">✏️ Редагувати книгу</h2>
 
-    <form asp-action="Create" method="post">
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="Id" />
+
         <div class="mb-3">
             <label asp-for="Title" class="form-label">Назва</label>
             <input asp-for="Title" class="form-control" />
@@ -29,7 +31,7 @@
             <span asp-validation-for="Year" class="text-danger"></span>
         </div>
 
-        <button type="submit" class="btn btn-success">💾 Зберегти</button>
+        <button type="submit" class="btn btn-primary">💾 Зберегти</button>
         <a asp-action="Index" class="btn btn-secondary">↩️ Назад</a>
     </form>
 </div>
