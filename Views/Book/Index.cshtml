@@ -1,17 +1,20 @@
-﻿@model List<Xz.Models.Book>
+﻿@model IEnumerable<Xz.Models.Book>
 
-<h1>Список книг</h1>
+<h1 class="mb-4">📚 Список книг</h1>
 
-<a href="/Book/Create">Додати нову книгу</a>
+<div class="text-end mb-3">
+    <a asp-action="Create" class="btn btn-primary shadow-sm px-4 rounded-pill">
+        ➕ Додати книгу
+    </a>
+</div>
 
-<table class="table">
-    <thead>
+<table class="table table-striped table-bordered">
+    <thead class="table-dark">
         <tr>
             <th>Назва</th>
             <th>Автор</th>
-            <th>Жанр</th>
-            <th>Видавництво</th>
             <th>Рік</th>
+            <th>Жанр</th>
         </tr>
     </thead>
     <tbody>
@@ -20,9 +23,8 @@
             <tr>
                 <td>@book.Title</td>
                 <td>@book.Author</td>
-                <td>@book.Genre</td>
-                <td>@book.Publisher</td>
                 <td>@book.Year</td>
+                <td>@book.Genre</td>
             </tr>
         }
     </tbody>

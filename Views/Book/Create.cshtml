@@ -1,27 +1,56 @@
 ﻿@model Xz.Models.Book
 
-<h1>Додати книгу</h1>
+@{
+    ViewData["Title"] = "Додати книгу";
+}
 
-<form asp-action="Create" method="post">
-    <div>
-        <label>Назва:</label>
-        <input asp-for="Title" />
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg rounded-4 border-0">
+                <div class="card-header bg-primary text-white text-center fs-4 rounded-top-4">
+                    📚 Додати нову книгу
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create">
+                        <div class="mb-3">
+                            <label asp-for="Title" class="form-label">Назва</label>
+                            <input asp-for="Title" class="form-control" />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Author" class="form-label">Автор</label>
+                            <input asp-for="Author" class="form-control" />
+                            <span asp-validation-for="Author" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Genre" class="form-label">Жанр</label>
+                            <input asp-for="Genre" class="form-control" />
+                            <span asp-validation-for="Genre" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Publisher" class="form-label">Видавництво</label>
+                            <input asp-for="Publisher" class="form-control" />
+                            <span asp-validation-for="Publisher" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Year" class="form-label">Рік видання</label>
+                            <input asp-for="Year" class="form-control" />
+                            <span asp-validation-for="Year" class="text-danger"></span>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success px-5">💾 Зберегти</button>
+                            <a asp-action="Index" class="btn btn-outline-secondary ms-2">↩️ Назад</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <div>
-        <label>Автор:</label>
-        <input asp-for="Author" />
-    </div>
-    <div>
-        <label>Жанр:</label>
-        <input asp-for="Genre" />
-    </div>
-    <div>
-        <label>Видавництво:</label>
-        <input asp-for="Publisher" />
-    </div>
-    <div>
-        <label>Рік:</label>
-        <input asp-for="Year" type="number" />
-    </div>
-    <button type="submit">Додати</button>
-</form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
